@@ -9,9 +9,9 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.listen(3000, () => {
-  console.log("server is working");
+  console.log("Backend started 💀💀");
 });
 
 AppDataSource.initialize().then(() => {
-  console.log("db initialized");
+  console.log("📚 db initialized");
 });
