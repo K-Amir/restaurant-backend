@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
 import { UsersService } from '../users.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +10,30 @@ import { UsersService } from '../users.service';
 })
 export class TableComponent implements OnInit {
   users: any[] = [];
+  selectedItem: any;
   socketKey: string = 'update';
+  items: MenuItem[] = [
+    {
+      label: 'Edit',
+      icon: 'pi pi-fw pi-file',
+    },
+    {
+      label: 'blahblah',
+      icon: 'pi pi-fw pi-file',
+    },
+    {
+      label: 'Eliminar',
+      icon: 'pi pi-fw pi-file',
+    },
+    {
+      label: 'Edit',
+      icon: 'pi pi-fw pi-file',
+    },
+    {
+      label: 'Edit',
+      icon: 'pi pi-fw pi-file',
+    },
+  ];
 
   constructor(
     private socketService: SocketService,
