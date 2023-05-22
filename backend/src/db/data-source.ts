@@ -1,8 +1,9 @@
-import { DataSource, Table } from "typeorm";
+import { DataSource } from "typeorm";
 import { User } from "./entity/User.js";
 import { Restaurant } from "./entity/Restaurant.js";
 import { Booking } from "./entity/Booking.js";
 import { RestaurantProfile } from "./entity/RestaurantProfile.js";
+import { Table } from "./entity/Table.js";
 import { Room } from "./entity/Room.js";
 
 export const AppDataSource = new DataSource({
