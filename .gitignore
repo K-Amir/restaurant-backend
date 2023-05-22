@@ -36,7 +36,7 @@ connect.lock
 coverage
 libpeerconnection.log
 testem.log
-/typings
+typings
 
 # System files
 .DS_Store
