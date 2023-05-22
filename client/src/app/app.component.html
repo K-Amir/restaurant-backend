@@ -3,6 +3,8 @@
 
 <h2>message</h2>
 
-<p *ngFor="let a of socketArray ">
-  <span>{{a.username}}</span>
-</p>
+<div *ngFor="let a of socketArray ">
+  <p>Username {{a.username}}</p>
+  <p>Device {{a.device}}</p>
+  <img width="200px" [src]="a.profileImage" alt="">
+</div>
