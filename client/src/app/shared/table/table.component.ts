@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-table',
@@ -8,14 +9,27 @@ import { SocketService } from '../socket.service';
 })
 export class TableComponent implements OnInit {
   users: any[] = [];
+  socketKey: string = 'update';
 
-  constructor(private socketService: SocketService) {}
+  constructor(
+    private socketService: SocketService,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
-    const socketKey: string = 'update';
+    this.loadUsers();
+    this.socketListener();
+  }
 
-    this.socketService.listen(socketKey).subscribe((x) => {
-      const socketData = x[socketKey];
+  loadUsers() {
+    this.usersService.findAllUsers().subscribe((users: any) => {
+      this.users = users;
+    });
+  }
+
+  socketListener() {
+    this.socketService.listen(this.socketKey).subscribe((x) => {
+      const socketData = x[this.socketKey];
       if (!socketData) return;
       this.users.push(socketData);
     });
