@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
 import { UsersService } from '../users.service';
 import { MenuItem } from 'primeng/api';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-table',
@@ -14,24 +16,12 @@ export class TableComponent implements OnInit {
   socketKey: string = 'update';
   items: MenuItem[] = [
     {
-      label: 'Edit',
-      icon: 'pi pi-fw pi-file',
+      label: 'Update',
+      icon: 'pi pi-pencil',
     },
     {
-      label: 'blahblah',
-      icon: 'pi pi-fw pi-file',
-    },
-    {
-      label: 'Eliminar',
-      icon: 'pi pi-fw pi-file',
-    },
-    {
-      label: 'Edit',
-      icon: 'pi pi-fw pi-file',
-    },
-    {
-      label: 'Edit',
-      icon: 'pi pi-fw pi-file',
+      label: 'Delete',
+      icon: 'pi pi-trash',
     },
   ];
 
@@ -55,7 +45,21 @@ export class TableComponent implements OnInit {
     this.socketService.listen(this.socketKey).subscribe((x) => {
       const socketData = x[this.socketKey];
       if (!socketData) return;
-      this.users.push(socketData);
+      this.users = [...this.users, socketData];
     });
+  }
+
+  exportToExcel() {
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(this.users);
+    XLSX.utils.book_append_sheet(workbook, worksheet);
+    const excelBuffer: any = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array',
+    });
+    const blob = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    saveAs(blob, 'data.xlsx');
   }
 }

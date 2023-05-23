@@ -1,9 +1,23 @@
 <div class="app-table border border-slate-600 overflow-hidden rounded-xl">
-  <p class="p-2 bg-slate-600 text-white">Users table</p>
+  <div class="flex bg-slate-600 justify-between">
+    <p
+      class="p-2 text-white w-32 text-center rounded rounded-tl-xl m-1 bg-slate-700"
+    >
+      Users table
+    </p>
+
+    <button
+      (click)="exportToExcel()"
+      class="bg-blue-500 text-white hover:bg-blue-600 transition-all flex-none w-40 m-1 rounded rounded-tr-xl flex items-center justify-center gap-2"
+    >
+      Export to Excel<i class="pi pi-file-excel"></i>
+    </button>
+  </div>
+
   <p-table
     [(contextMenuSelection)]="selectedItem"
     [contextMenu]="cm"
-    [rows]="10"
+    [rows]="5"
     dataKey="id"
     [paginator]="true"
     [globalFilterFields]="['username']"
@@ -11,12 +25,22 @@
   >
     <ng-template pTemplate="header">
       <tr>
-        <th>Id</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Phone number</th>
-        <th>Image</th>
-        <th>Device</th>
+        <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="username">
+          Username <p-sortIcon field="username"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email">
+          Email <p-sortIcon field="email"></p-sortIcon>
+        </th>
+        <th pSortableColumn="phoneNumber">
+          Phone number <p-sortIcon field="phoneNumber"></p-sortIcon>
+        </th>
+        <th pSortableColumn="profileImage">
+          Image <p-sortIcon field="profileImage"></p-sortIcon>
+        </th>
+        <th pSortableColumn="device">
+          Device <p-sortIcon field="device"></p-sortIcon>
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
