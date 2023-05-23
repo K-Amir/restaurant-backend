@@ -19,6 +19,7 @@ export const io = new Server(server, {
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
+
 // Routes
 app.use(userRouter);
 app.use(restaurantRouter);
