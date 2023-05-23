@@ -25,6 +25,9 @@ export class TableComponent implements OnInit {
     },
   ];
 
+  // Animations
+  exportingSpinner: boolean = false;
+
   constructor(
     private socketService: SocketService,
     private usersService: UsersService
@@ -50,8 +53,10 @@ export class TableComponent implements OnInit {
   }
 
   exportToExcel() {
+    this.exportingSpinner = true;
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.json_to_sheet(this.users);
+    const currentDate = new Date();
     XLSX.utils.book_append_sheet(workbook, worksheet);
     const excelBuffer: any = XLSX.write(workbook, {
       bookType: 'xlsx',
@@ -60,6 +65,12 @@ export class TableComponent implements OnInit {
     const blob = new Blob([excelBuffer], {
       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     });
-    saveAs(blob, 'data.xlsx');
+    setTimeout(() => {
+      saveAs(
+        blob,
+        `user-data-export-${currentDate.getDay()}-${currentDate.getMonth()}-${currentDate.getFullYear()}-${currentDate.getTime()}.xlsx`
+      );
+      this.exportingSpinner = false;
+    }, 1500);
   }
 }

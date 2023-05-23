@@ -8,9 +8,17 @@
 
     <button
       (click)="exportToExcel()"
+      [disabled]="exportingSpinner"
+      [ngClass]="{ 'cursor-not-allowed': exportingSpinner }"
       class="bg-blue-500 text-white hover:bg-blue-600 transition-all flex-none w-40 m-1 rounded rounded-tr-xl flex items-center justify-center gap-2"
     >
-      Export to Excel<i class="pi pi-file-excel"></i>
+      <ng-container *ngIf="exportingSpinner">
+        <app-spinner></app-spinner>
+      </ng-container>
+
+      <ng-container *ngIf="!exportingSpinner">
+        Export to Excel<i class="pi pi-file-excel"></i>
+      </ng-container>
     </button>
   </div>
 
