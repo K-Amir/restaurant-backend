@@ -18,6 +18,9 @@ export class Restaurant {
   restaurantName: string;
 
   @Column()
+  phone: string;
+
+  @Column()
   email: string;
 
   @Column()
@@ -29,9 +32,6 @@ export class Restaurant {
   @OneToMany(() => Room, (room) => room.restaurant)
   room: Room[];
 
-  @OneToOne(
-    () => RestaurantProfile,
-    (restaurantProfile) => restaurantProfile.restaurant
-  )
+  @OneToOne(() => RestaurantProfile,(restaurantProfile) => restaurantProfile.restaurant)
   restaurantProfile: RestaurantProfile;
 }

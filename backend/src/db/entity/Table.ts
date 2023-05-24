@@ -1,6 +1,8 @@
 import {
   Column,
   Entity,
+  JoinColumn,
+  JoinTable,
   ManyToOne,
   PrimaryGeneratedColumn,
   Relation,
@@ -13,12 +15,20 @@ export class Table {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    default : 0,
+  })
   state: number;
 
-  @ManyToOne(() => Room, (room) => room.table)
+  @ManyToOne(() => Room, (room) => room.table, {
+    cascade : ['remove'],
+  })
+  @JoinColumn({ name : 'room_id'})
   room: Room;
 
-  @ManyToOne(() => Restaurant, (restaurant) => restaurant.table)
-  restaurant: Relation<Restaurant>;
+  @ManyToOne(() => Restaurant, (restaurant) => restaurant.table,{
+    cascade : ['remove']
+  })
+  @JoinColumn({ name : 'restaurant_id'})
+  restaurant: Restaurant;
 }

@@ -8,10 +8,13 @@ export class User {
   @Column()
   username: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   phoneNumber: string;
 
   @Column({
+    unique: true,
     nullable: true,
   })
   email: string;
@@ -19,7 +22,9 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   profileImage: string;
 
   @Column()

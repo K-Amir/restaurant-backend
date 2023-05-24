@@ -1,0 +1,360 @@
+[
+  {
+    "id": 1,
+    "name": "Restaurante La Broche",
+    "has_terrace": false,
+    "description": "Un restaurante familiar con platos de pescadosy marisco buenisimos.",
+
+    "food_type": "Pescados y Marisco",
+    "score": 4.0,
+    "avg_price": 25,
+
+    "url": "https://consolepsp.com/restaurante-la-broche",
+    "phone": "+34953811000",
+    "profile_image": "/ruta/imagen1.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "C. Orquídea, 36, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.09804121954383",
+      "longitude": "-3.6237226800114724"
+    },
+    
+    "availability": {
+      "open": true,
+      "free_table_inside": true,
+      "free_table_in_terrace": false
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "Fue una mierda, jamas volvere a ir",
+        "score": 1
+      },
+      {
+        "user_id": 2,
+        "user_name": "Patata2",
+        "content": "Lo repetiria",
+        "score": 4
+      },
+      {
+        "user_id": 3,
+        "user_name": "Patata el ruinas",
+        "content": "Está bien pero 4 estrellas me parece demasiado",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Restaurante Los Sentidos",
+    "has_terrace": true,
+    "description": "Alta cocina internacional en antigua casa renovada en la que la piedra original convive con un aire minimalista y oriental.",
+
+    "food_type": "Internacional",
+    "score": 4.8,
+    "avg_price": 35,
+
+    "url": "https://www.lossentidos.net/",
+    "phone": "+34953651072",
+    "profile_image": "/ruta/imagen2.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "C. Doctor, 13, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.09191774610039",
+      "longitude": "-3.6296337846795628"
+    },
+
+    "availability": {
+      "open": true,
+      "free_table_inside": false,
+      "free_table_in_terrace": true
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "La mejor experiencia de mi vida, estaba de locos",
+        "score": 5
+      },
+      {
+        "user_id": 9000,
+        "user_name": "QwertyAsdf",
+        "content": "No era para tanto",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Café Mañas Bar Los Jamones 2",
+    "has_terrace": true,
+    "description": "Restaurante especializado en cocina mediterránea con productos frescos de la región.",
+
+    "food_type": "Mediterranea",
+    "score": 4.4,
+    "avg_price": 12,
+
+    "url": "https://www.barlosjamones.com/",
+    "phone": "+34953010937",
+    "profile_image": "/ruta/imagen2.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "C. Santiago, 37, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.09547228049384",
+      "longitude": "-3.6378005892401175"
+    },
+
+    "availability": {
+      "open": true,
+      "free_table_inside": false,
+      "free_table_in_terrace": true
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "La mejor experiencia de mi vida, estaba de locos",
+        "score": 5
+      },
+      {
+        "user_id": 9000,
+        "user_name": "QwertyAsdf",
+        "content": "No era para tanto",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Bar PonDos",
+    "has_terrace": true,
+    "description": "Restaurante especializado en cocina mediterránea.",
+
+    "food_type": "Mediterranea",
+    "score": 4.3,
+    "avg_price": 15,
+
+    "url": "https://www.pondos.es/",
+    "phone": "+34608329980",
+    "profile_image": "/ruta/imagen2.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "Pl. Aníbal e Himilce, 4, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.092481377799324",
+      "longitude": "-3.639846793829775"
+    },
+
+    "availability": {
+      "open": true,
+      "free_table_inside": false,
+      "free_table_in_terrace": true
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "La mejor experiencia de mi vida, estaba de locos",
+        "score": 5
+      },
+      {
+        "user_id": 9000,
+        "user_name": "QwertyAsdf",
+        "content": "No era para tanto",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Restaurante Canela en Rama",
+    "has_terrace": true,
+    "description": "Restaurante especializado en cocina internacional con productos frescos de la región.",
+
+    "food_type": "Mediterranea",
+    "score": 4.4,
+    "avg_price": 36,
+
+    "url": "https://www.juancarlostrujillo.com/",
+    "phone": "+34953602532",
+    "profile_image": "/ruta/imagen2.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "C. República Argentina, 12, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.09598747065612",
+      "longitude": "-3.631482931409343"
+    },
+
+    "availability": {
+      "open": true,
+      "free_table_inside": false,
+      "free_table_in_terrace": true
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "La mejor experiencia de mi vida, estaba de locos",
+        "score": 5
+      },
+      {
+        "user_id": 9000,
+        "user_name": "QwertyAsdf",
+        "content": "No era para tanto",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Restaurante Entreventanas",
+    "has_terrace": true,
+    "description": "Restaurante especializado destacando sus carnes.",
+
+    "food_type": "Carnes",
+    "score": 4.4,
+    "avg_price": 20,
+
+    "url": "https://bursucretleri.com/restaurante-entreventanas",
+    "phone": "",
+    "profile_image": "/ruta/imagen2.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "23700 36, C. Joaquín Ruano, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.09495817037398",
+      "longitude": "-3.6329338679979655"
+    },
+     
+    "availability": {
+      "open": true,
+      "free_table_inside": true,
+      "free_table_in_terrace": true
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "La mejor experiencia de mi vida, estaba de locos",
+        "score": 5
+      },
+      {
+        "user_id": 9000,
+        "user_name": "QwertyAsdf",
+        "content": "No era para tanto",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Bar restaurante La Esquinita de Alejo",
+    "has_terrace": true,
+    "description": "Restaurante especializado en comida Internacional con mucha variedad de platos.",
+
+    "food_type": "Internacional",
+    "score": 4.3,
+    "avg_price": 16,
+
+    "url": "",
+    "phone": "+34623413007",
+    "profile_image": "/ruta/imagen2.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "C. Sagunto, 5, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.09395145354374",
+      "longitude": "-3.6306769958789533"
+    },
+     
+    "availability": {
+      "open": true,
+      "free_table_inside": true,
+      "free_table_in_terrace": true
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "La mejor experiencia de mi vida, estaba de locos",
+        "score": 5
+      },
+      {
+        "user_id": 9000,
+        "user_name": "QwertyAsdf",
+        "content": "No era para tanto",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Taberna Montes",
+    "has_terrace": true,
+    "description": "Restaurante especializado en comida Mediterránea.",
+
+    "food_type": "Mediterranea",
+    "score": 4.5,
+    "avg_price": 26,
+
+    "url": "https://www.tabernamontes.es/",
+    "phone": "+34953027751",
+    "profile_image": "/ruta/imagen2.jpg",
+    "image_gallery_path": "/ruta/imagenes/",
+
+    "city": "Linares",
+    "address": "C. Cervantes, 8, 23700 Linares, Jaén",
+
+    "coordinates": {
+      "latitude": "38.09395145354374",
+      "longitude": "-3.6306769958789533"
+    },
+     
+    "availability": {
+      "open": true,
+      "free_table_inside": true,
+      "free_table_in_terrace": true
+    },
+
+    "reviews": [
+      {
+        "user_id": 1,
+        "user_name": "Juanita la mejor",
+        "content": "La mejor experiencia de mi vida, estaba de locos",
+        "score": 5
+      },
+      {
+        "user_id": 9000,
+        "user_name": "QwertyAsdf",
+        "content": "No era para tanto",
+        "score": 3
+      }
+    ]
+  }
+]

@@ -1,0 +1,175 @@
+{
+    "restaurantes": [
+      {
+        "id": 1,
+        "name": "El Jardin",
+        "data_rest":[
+          {
+            "img_perf": "/ruta/imagen1.jpg",
+            "img_gallery": "/ruta/imagenes/",
+            "coordinates": "40.416775,-3.703790",
+            "city": "Madrid",
+            "description": "Un restaurante familiar con platos tradicionales de la cocina española.",
+            "url": "https://www.restaurante.com",
+            "direction": "Calle de la Paz, 1",
+            "phone": "+34912345678",
+            "score":2.5,
+            "type_food":"Tradicional",
+            "avg_price":15.41
+          }
+        ],
+        "opnions":[
+          {
+            "comment":"Fue una mierda, jamas volvere a ir",
+            "score":1
+          },
+          {
+            "comment":"Lo repetiria",
+            "score":4
+          },
+          {
+            "comment":"Está bien pero 4 estrellas me parece demasiado",
+            "score":3
+          }
+        ],
+        "salas":[
+          {
+            "name": "Interior",
+            "tables_quantity": 7,
+            "status": 1,
+            "mesas":[
+              {
+                "mesa":1,
+                "status": 0
+              },
+              {
+                "mesa":2,
+                "status": 1
+              },
+              {
+                "mesa":3,
+                "status": 0
+              },
+              {
+                "mesa":4,
+                "status": 1
+              },
+              {
+                "mesa":5,
+                "status": 0
+              },
+              {
+                "mesa":6,
+                "status": 2
+              },
+              {
+                "mesa":7,
+                "status": 2
+              }
+            ]
+          },
+          {
+            "name": "Terraza 1",
+            "tables_quantity": 5,
+            "status": 0,
+            "mesas":[
+              {
+                "mesa":1,
+                "status": 0
+              },
+              {
+                "mesa":2,
+                "status": 1
+              },
+              {
+                "mesa":2,
+                "status": 0
+              },
+              {
+                "mesa":3,
+                "status": 2
+              },
+              {
+                "mesa":3,
+                "status": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "La Terraza",
+        "data":[
+          {
+            "img_perf": "/ruta/imagen2.jpg",
+            "img_gallery": "/ruta/imagenes/",
+            "coordinates": "41.385063,2.173404",
+            "city": "Barcelona",
+            "description": "Restaurante especializado en cocina mediterránea con productos frescos de la región.",
+            "url": "https://www.restaurante2.com",
+            "direction": "Carrer de Mallorca, 123",
+            "phone": "+34934567890",
+            "score":4.0,
+            "type_food":"Mediterranea",
+            "avg_price":20.30
+          }
+        ],
+        "opinions":[
+          {
+            "comment":"La mejor experiencia de mi vida, estaba de locos",
+            "score":5
+        },
+        {
+          "comment":"No era para tanto",
+          "score":3
+        }
+        ],
+        "salas":[
+          {
+            "name": "Interior",
+            "tables_quantity": 4,
+            "status": 1,
+            "mesas":[
+              {
+                "mesa":1,
+                "status": 0
+              },
+              {
+                "mesa":2,
+                "status": 1
+              },
+              {
+                "mesa":3,
+                "status": 2
+              },
+              {
+                "mesa":3,
+                "status": 2
+              }
+            ]
+          },
+          {
+            "name": "Exterior",
+            "tables_quantity": 3,
+            "status": 1,
+            "mesas":[
+              {
+                "mesa":1,
+                "status": 0
+              },
+              {
+                "mesa":2,
+                "status": 1
+              },
+              {
+                "mesa":3,
+                "status": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

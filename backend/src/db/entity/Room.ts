@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -23,9 +24,18 @@ export class Room {
   @Column()
   state: number;
 
-  @OneToMany(() => Table, (table) => table.room)
+  @Column()
+  terrace: boolean;
+
+  @OneToMany(() => Table, (table) => table.room,{
+    cascade: ['update', 'remove'],
+  })
+  @JoinColumn({ name: "table_id"})
   table: Table[];
 
-  @ManyToOne(() => Restaurant, (restaurant) => restaurant.room)
-  restaurant: Relation<Restaurant>;
+  @ManyToOne(() => Restaurant, (restaurant) => restaurant.room,{
+    cascade: ['remove', 'update']
+  })
+  @JoinColumn({ name: "restaurant_id"})
+  restaurant: Restaurant;
 }

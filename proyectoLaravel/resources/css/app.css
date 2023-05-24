@@ -1,0 +1,129 @@
+/*
+    Fontsource
+    ---
+    Cargamos la familia tipográfica Recursive para usarla en la interfaz.
+*/
+@import "@fontsource/recursive"; /* 400 */
+@import "@fontsource/recursive/800.css";
+/*@import "@fontsource/recursive/1000.css";*/
+
+
+/*
+    Tailwind CSS
+    ---
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*
+    Alpine.js
+    ---
+    Ocultar los componentes que usan Alpine hasta que termine de cargar,
+    para evitar que parpadeen todos los divs con, por ejemplo, x-show.
+*/
+[x-cloak] { display: none !important; }
+
+
+/*** CSS Styles ***/
+
+/**/
+img, svg{
+    max-height: 100%;
+    max-width: 100%;
+}
+/* Ocultar conmutadores input type:"number" */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/** Clases **/
+.abs-center{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+/** Componentes **/
+
+/* Primary button */
+.primary-button{
+    @apply block w-full items-center px-4 py-2 bg-highlight-regular border rounded-normal text-action text-dark-1 transition ease-in-out duration-150;
+}
+
+/* Danger button */
+.danger-button{
+    @apply block w-full items-center px-4 py-2 bg-highlight-dangerous border rounded-normal text-action text-dark-1 transition ease-in-out duration-150;
+}
+
+/* text-input-modal */
+.input-modal {
+    position: relative;
+}
+
+.input-modal input {
+box-sizing: border-box;
+color: 'oklch(20% 0.015 220)';
+padding: 15px 15px 15px 35px;
+width: 100%;
+}  
+
+.input-label-modal{
+    color: 'oklch(20% 0.015 220)';
+    position: absolute;
+
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-icon svg{
+    color: 'oklch(20% 0.015 220)';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+} 
+
+
+/* room-button */
+.room-button{
+    @apply block items-center text-highlight-regular text-lead-bold rounded-[10px] py-[10px] px-[60px] transition ease-in-out duration-150 mr-4;
+}
+
+.room-button.active{
+    background-color: oklch(20% 0.015 220);
+}
+
+.room-button.inactive{
+    background-color:oklch(30% 0.02 220);
+}
+/* next-reservation */
+.next-reservation{
+    @apply flex place-content-between gap-2 mx-auto bg-dark-1 hover:bg-dark-2 text-light-1 p-2 max-w-[500px] rounded-[10px];
+}
+/* button-add-reservation */
+.button-add-reservation{
+    @apply block items-center w-full h-full bg-highlight-regular text-dark-1 border rounded-normal text-action px-4 py-2 transition ease-in-out duration-150;
+}
+/* button-accept-reservation */
+.button-accept-reservation{
+    @apply block items-center w-full h-full bg-highlight-regular text-dark-1 border rounded-little text-action px-4 py-2 transition ease-in-out duration-150;
+}
+/* button-reject-reservation */
+.button-reject-reservation{
+    @apply block items-center w-full h-full bg-highlight-dangerous text-dark-1 border rounded-little text-action px-4 py-2 transition ease-in-out duration-150;
+}
+
+/* salas */
+
+.sala.active {
+    display: flex;
+}
+
+.sala.inactive {
+    display: none;
+}

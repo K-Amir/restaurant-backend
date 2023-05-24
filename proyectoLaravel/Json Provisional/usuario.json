@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "name": "Juan",
+  "phone": "+34123456789",
+  "email": "juan@example.com",
+  "token": "abc123"
+}

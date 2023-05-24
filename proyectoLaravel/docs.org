@@ -1,0 +1,608 @@
+#+TITLE: Working with Laravel
+#+AUTHOR: Manuel Jesús de la Fuente
+
+Made for Laravel 8.
+
+-----
+
+* Installing PHP 7
+PHP 7 is very, very, outdated. It's almost impossible to install it anymore.
+Use 7.4.33 to avoid issues.
+
+** Windows and macOS
+1. Download an old version of XAMPP that still has PHP 7. Good luck.
+2. Add it to your $PATH or environment variable.
+
+
+** Linux (openSUSE Tumbleweed)
+Por desgracia, openSUSE Tumbleweed no tiene PHP 7.4.* (es normal, es EOL), y en Open Build System ninguno de los repositorios de la comunidad tiene el ~Phar~ activado (dependencia de Composer).
+
+Toca compilar a mano. Aquí los pasos:
+1. Descargar el código fuente de PHP 7.4.33 desde https://www.php.net/releases/
+2. Descomprimir el .tar.gz, .tar.bz2, .tar.xz, lo que sea
+3. Ir a la carpeta descomprimida y ejecutar lo siguiente:
+#+BEGIN_SRC bash
+    # Configurar automáticamente el entorno
+    ./buildconf
+
+    # Ver las opciones disponibles
+    ./configure -h
+
+    # Tenemos que añadir explícitamente el soporte de OpenSSL y cURL para Composer,
+    # si no no podrá descargar paquetes de packagist.org
+    # También añadiremos el driver PDO de MySQL/MariaDB para las funciones mysqli, etc
+    ./configure --with-openssl --with-curl \
+    --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd
+
+    # Empezamos a compilar. Especificamos el número de núcleos a usar.
+    make -j8
+
+    # (OPCIONAL) Testeamos el resultado. Saldrán solo 7 errores no muy importantes (espero).
+    # make TEST_PHP_ARGS=-j8 test
+
+    # Instalamos el PHP ya compilado
+    sudo make install
+#+END_SRC
+
+
+* Creating the Laravel project
+
+Usaremos Composer (equivalente de NPM en el ecosistema PHP)
+https://getcomposer.org
+
+** Using ~composer create-project~
+#+BEGIN_SRC bash
+    # composer create-project laravel/laravel 1_laravel "7.*"
+    composer create-project laravel/laravel 1_laravel "8.*"
+    #        ^ crear        ^ de laravel    ^ nombre  ^ versión
+#+END_SRC
+
+
+** Using the LEGACY Laravel installer
+#+BEGIN_SRC bash
+    # Primero instalamos el instalador de Laravel
+    composer global require laravel/installer
+    composer global about
+
+    # Posteriormente añadimos los paquetes binarios de Composer al $PATH
+    # para usar el instalador de Laravel
+    echo "export PATH=\"$HOME/.composer/vendor/bin:$PATH\"" >> ~/.zshrc # o ~/.bashrc
+    # Laravel
+    laravel new project_name --7.1
+    #   nuevo ^ ^ nombre
+#+END_SRC
+
+
+* Configuring your code editor
+
+** Plugins and LSPs
+
+*** Emacs
+- Configure LSP support, either through ~lsp-mode~, ~eglot~ or similar.
+- Use Intelephense as the LSP server. Install it from ~npm~.
+
+*** IntelliJ
+- Install the PHP plugin
+- Install the Laravel plugin (paid)
+- Install the Laravel Blade plugin
+
+*** VS Code
+- Install the Intelephense plugin
+- Install the Laravel Blade snippets
+
+
+** Using and installing ~laravel-ide-helper~
+Note: this is unnecessary for IntelliJ users as it'll do this for you in the background.
+
+En principio, aunque la configuración de Emacs automáticamente instala el LSP de PHP (~intelephense~), para que autocomplete los métodos específicos a Laravel se tendría que instalar [[https://github.com/barryvdh/laravel-ide-helper][laravel-ide-helper]].
+
+Pongo aquí el comando:
+#+BEGIN_SRC bash
+    # Marcamos explícitamente la última versión de laravel-ide-helper compatible con Laravel 7
+    composer require --dev 'barryvdh/laravel-ide-helper:^2.8'
+
+    # O para Laravel 8+
+    composer require --dev 'barryvdh/laravel-ide-helper'
+
+    # Generamos manualmente
+    php artisan ide-helper:generate
+#+END_SRC
+
+*** IntelliJ
+
+*** VSCode and others
+
+
+* Laravel Directories
+En Laravel, usamos la arquitectura MVC. Estas son las rutas del proyecto donde está cada componente
+
+- Router: ~/routes/*~
+- Controladores: ~/app/Http//Controllers/*~
+- Vistas: ~/resources/views/*~
+- Database: ~/database/migrations/*~
+
+El router llama al controlador, controlador llama a las vistas
+
+
+* Partes de Laravel
+
+** Router
+
+
+** Controllers
+
+
+** Views
+
+
+
+** Middleware
+~/app/Http/Middleware~
+El middleware se encarga de las peticiones entrantes. Antes de ejecutar la petición, puede ejecutar cualquier código desde comprobar los parámetros o datos enviados y elegir permitir o no la petición, a cualquier otra cosa que haga falta.
+
+Se puede crear con ~php artisan make:middleware CheckAge~
+
+El kernel del Middleware define todas las rutas del Middleware. Tenemos que añadir nuestros propios Middlewares a la última lista del route middleware del kernel para poder utilizarlos.
+
+*** X-CSRF
+Protección a /cross-site request forgeries/ a través de sesiones de PHP.
+Funciona como Middleware.
+
+Genera un token CSRF que se regenera junto al token de sesión, para saber que las peticiones son tuyas.
+Se debe de añadir ~@csrf~ a cada formulario.
+#+BEGIN_SRC web
+  <!doctype html>
+  <html lang="en">
+      <head>
+          <meta charset="UTF-8"/>
+          <title>Document</title>
+      </head>
+      <body>
+          Hola
+          <?php echo csrf_token(); ?>
+
+          <form method="post" action="/profile">
+              @csrf
+              <!-- Igual que -->
+              <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+          </form>
+      </body>
+  </html>
+#+END_SRC
+
+
+** Database
+#+BEGIN_SRC bash
+  # create new migration table (representation of a table using a Blueprint object)
+  php artisan make:migration create_alumnos_table
+
+  # after creating and configuring the new migration table, migrate the tables to
+  # the DB in a single batch
+  php artisan migrate
+
+  # make every new migration have its own step
+  php artisan migrate --step
+
+  # rolls back the last batch
+  php artisan migrate:rollback
+
+  # roll back the last 4 batches
+  php artisan migrate:rollback --step=4
+
+  # rollback, then migrate
+  # works by executing `down()`, then `up()`
+  php artisan migrate:refresh
+
+  # drop all tables in DB
+  php artisan migrate:reset
+
+  # panic button, nuke and pave
+  # reset, then migrate
+  php artisan migrate:fresh
+
+  # create a migration that modifies a table
+  php artisan make:migration add_email_to_alumnos
+
+
+  # list all options
+  php artisan migrate --help
+#+END_SRC
+
+
+*** Migrations
+
+
+*** Seeders
+Clases /semilla/ para sembrar datos en la DB.
+
+#+BEGIN_SRC bash
+  # Create a new seed with given name
+  php artisan make:seeder AlumnoSeeder
+
+  # Run the default seeder (DatabaseSeeder)
+  php artisan db:seed
+
+  # Run a specific seeder
+  php artisan db:seed --class=AlumnoSeeder
+#+END_SRC
+
+Se podría poner esto en DatabaseSeeder para ejecutar todos los seeders a la vez
+#+BEGIN_SRC php
+  $this->call([
+    UserSeeder::class
+    AdminSeeder::class
+  ]);
+#+END_SRC
+
+#+BEGIN_SRC bash
+  # Limpiar/regenerar toda la base de datos
+  php artisan migrate:fresh --seed
+#+END_SRC
+
+
+*** Factories
+#+BEGIN_SRC bash
+  php artisan make:factory PostFactory
+
+  php artisan db:seed
+#+END_SRC
+
+
+*** Models
+Entre el controlador y la base de datos. Gestiona el fetch de los objetos de cada tabla.
+
+#+BEGIN_SRC bash
+  php artisan make:model Alumno
+
+  # con boilerplate
+  php artisan make:model Alumno -m
+#+END_SRC
+
+
+*** Tinker
+REPL de Laravel
+
+#+BEGIN_SRC php
+    > $alumno = new \App\Models\Alumno;
+    > \App\Models\Alumno::all();
+    > $alumno // vardump
+    > $alumno->save(); // guardar en db
+
+
+    > use App\Models\User
+
+    > $user = User::first() # pet. 1
+    > $user->posts          # pet. 2
+
+    # O
+    > $user = User::with("posts")->find(1) # todo en una petición (mejor)
+
+    # -----
+
+    > $phone->user_id = 1
+    > $phone->phone_number = "123456"
+    > $phone->created_at = now()
+    > $phone->save # true if good, false if bad :D
+
+    > $user = User::with("phone")->first()
+    > $user->phone
+    > $phone = $user->phone
+
+
+    # Modificamos contenido
+    > $phone->phone_number = "1234567890"
+    > $phone->save()
+
+    # O
+
+    > $phone->fill(["phone_number" => "9876543210"])->update()
+
+    # -----
+
+    > use App\Models\User
+    > User::find(1)
+
+    # -----
+
+    # Borramos contenido ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    > $user = User::find(1)
+    > $user->posts()->delete()
+    > $user->delete()
+
+#+END_SRC
+
+
+
+* Eloquent
+Es un ORM, Object Relational Mapping. Va a mapear las tuplas de la base de datos a objetos PHP a partir de los modelos (MVC).
+
+
+* Bootstrap a freshly cloned Laravel project
+
+#+BEGIN_SRC bash
+  # Empezamos instalando las dependencias del proyecto con composer
+  composer install
+
+  # Copiamos .env.example a .env
+  cp .env.example .env
+
+  # Modificamos .env y cambiamos el usuario, contraseña y nombre de la base de datos a las necesarias
+  emacs .env
+
+  # Generamos la clave nueva
+  php artisan key:generate
+
+  # Migramos la base de datos
+  php artisan migrate:fresh --seed
+
+  # Creamos un symlink a la carpeta de recursos (p. ej archivos subidos por formulario)
+  # en /storage/app/public
+  php artisan storage:link
+
+  # si usamos libs npm
+  npm install
+  npm run dev
+#+END_SRC
+
+** Devilbox
+#+BEGIN_SRC bash
+  docker-compose up httpd php mysql
+#+END_SRC
+
+
+
+* Using Artisan
+
+** Iniciar servidor local de desarrollo
+Dentro de un proyecto:
+
+#+BEGIN_SRC bash
+
+  # Listar todos los comandos y opciones de Artisan
+  php artisan list
+
+  # Iniciar servidor de desarrollo
+  php artisan serve # se abrirá en 127.0.0.1:8000
+  php artisan serve --host=laravel.loc --port=8001 # por si quieres cambiar el dominio y puerto (no suele funcionar)
+
+  # Generar clave de aplicación
+  php artisan key:generate
+
+  # Poner la app fuera de servicio
+  php artisan down
+  # Para volver a ponerla a servicio
+  php artisan up
+#+END_SRC
+
+
+** Otros comandos de Artisan
+Comandos útiles que seguro que vamos a necesitar
+
+#+BEGIN_SRC bash
+# Borrar y regenerar la caché de las rutas
+php artisan route:cache
+
+# Solo borrar la caché de las rutas
+php artisan route:clear
+
+# Generar nueva clave en `.env', si existe, y si no, generar `.env'
+php artisan key:generate
+
+# Generar nuevo controller, aquí de ejemplo `UserController'
+php artisan make:controller UserController
+# php artisan make:controller UserController -r || --resource # genera el controlador con todos los métodos del crud
+php artisan make:controller UserController --invokable # crea la función __invoke()
+
+# Listar todas las rutas del proyecto
+php artisan route:list
+
+# Inspirarse
+php artisan inspire
+
+# Crear symlink a la carpeta de recursos (p. ej archivos subidos por formulario)
+# en /storage/app/public
+php artisan storage:link
+#+END_SRC
+
+*** Borrando caché
+#+BEGIN_SRC bash
+  php artisan config:cache
+
+  # o
+  php artisan cache:clear
+  php artisan config:clear
+#+END_SRC
+
+
+* Laravel Debugbar
+#+BEGIN_SRC bash
+  composer require barryvdh/laravel-debugbar --dev
+#+END_SRC
+The debug bar will appear when the application is in Debug mode.
+Change ~.env~ > ~APP_DEBUG~ from ~true~ to ~false~.
+
+You can also disable or enable it for specific views in ~/routes/web.php~ like so:
+#+BEGIN_SRC php
+    Route::get('/', function () {
+        \Debugbar::disable();
+        # \Debugbar::enable();
+        return view('view-name');
+    })
+#+END_SRC
+
+
+* Laravel UI
+#+BEGIN_SRC bash
+  composer require laravel/ui
+
+  # Scaffolding
+  php artisan ui bootstrap --auth
+  npm install && npm run dev
+
+  # Para copiar/configurar el CSS de resources/css y el JS /resources/js en /public
+  npm run development
+#+END_SRC
+
+
+* Swift Mail (Laravel 8) / Symfony Mail
+
+** Installing
+#+BEGIN_SRC bash
+php artisan make:mail Notification
+#+END_SRC
+
+** TODO Configuring and using
+#+BEGIN_SRC php
+  // see 2_middleware_seeder
+#+END_SRC
+
+
+* APIs
+
+** JWT
+
+*** Initial setup
+
+**** Install the library
+#+BEGIN_SRC bash
+  # We install JWT
+  composer require tymon/jwt-auth
+
+  # Publish config file (to modify the defaults). Will appear at /config/jwt.php
+  php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+
+  # Generate key in .env. This will encrypt the tokens.
+  php artisan jwt:secret
+#+END_SRC
+
+
+***** Modify ~/config/auth.php~ to add the ~'api'~ section inside ~guards~
+#+BEGIN_SRC php
+'guards' => [
+  'web' => [
+    'driver' => 'session',
+    'provider' => 'users',
+  ],
+  'api' => [
+    'driver' => 'jwt',
+    'provider' =>'users',
+  ],
+],
+#+END_SRC
+
+
+**** Create aliases of the libraries in ~/config/app.php~, go to the bottom in the ~aliases~ section
+#+BEGIN_SRC php
+          // ...
+          'Validator' => Illuminate\Support\Facades\Validator::class,
+          'View' => Illuminate\Support\Facades\View::class,
+
+          // add these
+          'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+          'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+      ],
+  ];
+#+END_SRC
+
+
+**** OPTIONAL Create a new API controller
+#+BEGIN_SRC bash
+  # Append V1 to the controller to allow multiple versions of the API to coexist in the future.
+  php artisan make:controller V1/AuthController
+  php artisan make:controller V1/AlumnoController
+#+END_SRC
+
+
+**** Create middleware for Auth
+#+BEGIN_SRC bash
+  php artisan make:middleware JwtMiddleware
+#+END_SRC
+
+***** Add new auth middleware to ~/app/http/Kernel.php~
+#+BEGIN_SRC php
+  {  // ...
+      
+     protected $routeMiddleware = [
+       // ...
+
+       'jwt.verify'  => \App\Http\Middleware\JwtMiddleware::class,
+       'jwt.auth'    => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
+       'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
+    ];
+  }
+#+END_SRC
+
+
+*** Create new route
+In ~/routes/api.php~:
+#+BEGIN_SRC php
+  
+  // We import the AuthController
+    use App\Http\Controllers\V1\AuthController;
+  // ...
+
+  // Everything inside of this will be accessed through /api/v1/
+  Route::prefix('v1')->group(function () {
+
+      // without auth (just login)
+      Route::post('login', [AuthController::class, 'authenticate']);
+
+      // requires auth
+      Route::group(['middleware' => ['jwt.verify']], function () {
+          // all routes requiring auth goes here
+          Route::post('logout', [AuthController::class, 'logout'])
+      });
+  });
+
+#+END_SRC
+
+
+*** Model configuration
+- ~use Tymon\JWTAuth\Contracts\JWTSubject;~
+- ~implements JWTSubject~
+- ~use HasApiTokens, HasFactory, Notifiable~
+  - Remove the ~use Laravel\Sanctum\HasApiTokens~
+
+**** Implement the necessary functions
+#+BEGIN_SRC php
+public function getJWTIdentifier() {
+  return $this->getKey(); 
+}
+
+public function getJWTCustomClaims() {
+  return [];
+}
+#+END_SRC
+
+
+
+** Making test requests
+1. Open Postman and make a new HTTP request.
+2. Change to POST or the method that you use in your API routes.
+   
+Example:
+#+BEGIN_SRC json-ts
+  # [POST]
+  localhost:8000/api/v1/login
+
+  # [Body/Raw]
+  {
+    "email": "zemlak.duane@example.net",
+    "password": "password"
+  }
+#+END_SRC
+
+#+BEGIN_SRC json-ts
+  # [POST]
+  localhost:8000/api/v1/logout
+
+  # [Body/Raw]
+  {
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2NzY5OTM2OTUsImV4cCI6MTY3Njk5NzI5NSwibmJmIjoxNjc2OTkzNjk1LCJqdGkiOiJ0c1lDbE9yT2xFVEtmcXhBIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.auch1BzFU7nYSl-1W5zTS1DUHbzZ9CP4EVg3vYn7obw"
+  }
+#+END_SRC
+
+
+* Laravel Docs
+[[https://www.laravel.com/docs/8.x/][Documentación general de Laravel 8.x]]
+- [[https://laravel.com/docs/8.x/migrations][Documentación de Migraciones]]
