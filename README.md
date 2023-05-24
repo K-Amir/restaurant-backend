@@ -11,7 +11,7 @@
     
 
 ## La estructura de la base de datos será la misma que la que había en el proyecto de Angular
-### Tareas:
+### Tareas :
 - [x] Crear estructura del backend
 - [ ] Hacer migraciones de las bases de datos
     - [x] Tabla User
