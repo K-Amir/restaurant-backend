@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert } from "typeorm";
+import { randomBytes } from 'crypto';
 
 @Entity()
 export class User {
@@ -10,17 +11,20 @@ export class User {
 
   @Column({
     unique: true,
-  })
-  phoneNumber: string;
-
-  @Column({
-    unique: true,
     nullable: true,
   })
   email: string;
 
+  @Column({
+    unique: true,
+  })
+  phoneNumber: string;
+
   @Column()
   password: string;
+
+  @Column()
+  role: string; //El rol es un string de un numero, entre 0 y 10
 
   @Column({
     nullable: true,
@@ -32,4 +36,9 @@ export class User {
 
   @Column()
   token: string;
+
+  @BeforeInsert()
+  generateToken() {
+    this.token = randomBytes(32).toString('hex');
+  }
 }

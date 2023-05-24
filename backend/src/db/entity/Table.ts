@@ -30,5 +30,6 @@ export class Table {
     cascade : ['remove']
   })
   @JoinColumn({ name : 'restaurant_id'})
-  restaurant: Restaurant;
+    restaurant: Relation<Restaurant>;
+
 }

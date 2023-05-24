@@ -28,14 +28,14 @@ export class Room {
   terrace: boolean;
 
   @OneToMany(() => Table, (table) => table.room,{
-    cascade: ['update', 'remove'],
+    cascade: ['update'],
   })
   @JoinColumn({ name: "table_id"})
   table: Table[];
 
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.room,{
-    cascade: ['remove', 'update']
+    cascade: ['update']
   })
   @JoinColumn({ name: "restaurant_id"})
-  restaurant: Restaurant;
+  restaurant: Relation<Restaurant>;
 }

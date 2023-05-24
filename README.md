@@ -22,6 +22,7 @@
     - [x] Tabla Room
     - [x] Tabla RestaurantProfile
     - [x] Tabla Booking
+    - [x] Tabla Opinion
 - [ ] Crear peticiones para la API
     - [x] Tabla User
     - [x] Tabla Restaurant
@@ -29,6 +30,7 @@
     - [ ] Tabla Room
     - [ ] Tabla RestaurantProfile
     - [ ] Tabla Booking
+    - [ ] Tabla Opinion
 - [ ] Crear middlewares para la gestion de datos
     - [x] Tabla User
     - [x] Tabla Restaurant
@@ -36,6 +38,7 @@
     - [ ] Tabla Room
     - [ ] Tabla RestaurantProfile
     - [ ] Tabla Booking
+    - [ ] Tabla Opinion
 - [ ] Implementacion validacion de datos
     - [x] Tabla User
     - [x] Tabla Restaurant
@@ -43,6 +46,7 @@
     - [ ] Tabla Room
     - [ ] Tabla RestaurantProfile
     - [ ] Tabla Booking
+    - [ ] Tabla Opinion
 - [ ] Codificar las contraseñas recibidas desde el front
 - [ ] Implementar rutas para que sean iguales que las del proyecto de Laravel
 - [ ] Implementar sistema de login
