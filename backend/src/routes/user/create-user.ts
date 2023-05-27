@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../db/data-source.js";
-import { User } from "../../db/entity/User.js";
+import { User } from "../../db/entity/user.js";
 import { io } from "../../index.js";
 
 const usersRepo = AppDataSource.getRepository(User);
@@ -8,25 +8,27 @@ const usersRepo = AppDataSource.getRepository(User);
 const createUser = async (req: Request, res: Response) => {
   const {
     username,
-    password,
-    device,
     email,
     phoneNumber,
+    password,
+    role,
     profileImage,
+    device,
     token,
   } = req.body;
 
   const createdUser = await usersRepo.save({
     username,
-    password,
-    device,
     email,
     phoneNumber,
+    password,
+    role,
     profileImage,
+    device,
     token,
   });
 
-  io.emit("update", createdUser);
+  io.emit("updateNewUser", createdUser);
 
   res.send({
     success: "User created successfully",

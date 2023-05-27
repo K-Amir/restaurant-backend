@@ -1,6 +1,6 @@
 import { check } from "express-validator";
-import validateResult from "../helpers/validateHelper.js";
 import { Request, Response, NextFunction } from "express";
+import validateResult from "../middlewares/validateHelper.js";
 
 const validateCreate = [
   check("restaurantName").exists(),

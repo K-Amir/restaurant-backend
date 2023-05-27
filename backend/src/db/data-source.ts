@@ -1,22 +1,25 @@
 import { DataSource } from "typeorm";
-import { User } from "./entity/User.js";
-import { Restaurant } from "./entity/Restaurant.js";
-import { Booking } from "./entity/Booking.js";
-import { RestaurantProfile } from "./entity/RestaurantProfile.js";
-import { Table } from "./entity/Table.js";
-import { Room } from "./entity/Room.js";
-import { Opinion } from "./entity/Opinion.js";
+import { User } from "./entity/user.js";
+import { Restaurant } from "./entity/restaurant.js";
+import { Booking } from "./entity/booking.js";
+import { Table } from "./entity/table.js";
+import { Room } from "./entity/room.js";
+import { Opinion } from "./entity/opinion.js";
+import  config  from "./config.js"
+
+const sync = config.sync === "true"
+const log = config.log === "true"
 
 export const AppDataSource = new DataSource({
   type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "root",
-  database: "backend",
-  synchronize: true,
-  logging: true,
-  entities: [User, Restaurant, Booking, RestaurantProfile, Room, Table, Opinion],
+  host: config.host,
+  port: parseInt(config.port),
+  username: config.user,
+  password: config.passwd,
+  database: config.database,
+  synchronize: sync,
+  logging: log,
+  entities: [User, Restaurant, Booking, Room, Table, Opinion],
   subscribers: [],
   migrations: [],
 });

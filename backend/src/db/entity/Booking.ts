@@ -7,9 +7,9 @@ import {
   PrimaryGeneratedColumn,
   Relation,
 } from "typeorm";
-import { User } from "./User.js";
-import { Restaurant } from "./Restaurant.js";
-import { Table } from "./Table.js";
+import { User } from "./user.js";
+import { Restaurant } from "./restaurant.js";
+import { Table } from "./table.js";
 
 @Entity()
 export class Booking {
@@ -21,6 +21,9 @@ export class Booking {
 
   @Column()
   bookingCreation: Date;
+
+  @Column()
+  estimated:number;
 
   @Column({
     default: 0,
