@@ -8,21 +8,23 @@ const usersRepo = AppDataSource.getRepository(User);
 const createUser = async (req: Request, res: Response) => {
   const {
     username,
-    password,
-    device,
     email,
     phoneNumber,
+    password,
+    role,
     profileImage,
+    device,
     token,
   } = req.body;
 
   const createdUser = await usersRepo.save({
     username,
-    password,
-    device,
     email,
     phoneNumber,
+    password,
+    role,
     profileImage,
+    device,
     token,
   });
 
