@@ -28,7 +28,7 @@ const createUser = async (req: Request, res: Response) => {
     token,
   });
 
-  io.emit("update", createdUser);
+  io.emit("updateNewUser", createdUser);
 
   res.send({
     success: "User created successfully",

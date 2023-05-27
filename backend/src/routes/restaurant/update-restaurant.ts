@@ -1,3 +1,4 @@
+import { io } from "../../index.js";
 import { Request, Response } from "express";
 import { AppDataSource } from "../../db/data-source.js";
 import { Restaurant } from "../../db/entity/restaurant.js";
@@ -55,6 +56,8 @@ const updateRestaurantById = async (req: Request, res: Response) => {
 
   // Guardar los cambios en la base de datos
   const updatedRestaurant = await restaurantRepo.save(restaurantToUpdate);
+
+  io.emit("updateRestaurant", updatedRestaurant)
 
   res.send({
     status: "success",
