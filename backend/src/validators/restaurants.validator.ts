@@ -8,6 +8,7 @@ const validateCreate = [
   check("password").isStrongPassword({
     minLength: 8,
   }),
+
   (req: Request, res: Response, next: NextFunction) => {
     validateResult(req, res, next);
   },

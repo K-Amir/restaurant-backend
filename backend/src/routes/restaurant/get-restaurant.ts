@@ -7,6 +7,7 @@ const restaurantRepo = AppDataSource.getRepository(Restaurant);
 const getRestaurantById = async (req: Request, res: Response) => {
   const { id } = req.params;
 
+
   const restaurant = await restaurantRepo.findOneBy({
     id: Number(id),
   });
