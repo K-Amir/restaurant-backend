@@ -6,9 +6,11 @@ const restaurantRepo = AppDataSource.getRepository(Restaurant);
 
 const deleteRestaurantById = async (req: Request, res: Response) => {
   const { id } = req.params;
+
   const restaurantToDelete = await restaurantRepo.delete({
     id: Number(id),
   });
+
   res.send({
     status: "Deleted successfully",
     restaurant: restaurantToDelete,
