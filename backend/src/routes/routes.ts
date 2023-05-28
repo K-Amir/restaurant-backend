@@ -17,7 +17,7 @@ const routes = Router();
 routes.use(
   "/api/v1",
   expressjwt({
-    secret: "4242343565757576a",
+    secret: process.env.JWT_SECRET,
     algorithms: ["HS256"],
   }).unless({
     path: ["/api/v1/login", "/api/v1/register"],
