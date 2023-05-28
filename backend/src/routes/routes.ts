@@ -21,7 +21,7 @@ routes.use(
     secret: process.env.JWT_SECRET,
     algorithms: ["HS256"],
   }).unless({
-    path: ["/auth", "/register"],
+    path: ["/login", "/register"],
   })
 );
 

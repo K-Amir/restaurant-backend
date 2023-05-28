@@ -3,6 +3,6 @@ import login from "./login.js";
 
 const router = Router();
 
-router.get("/auth", login);
+router.get("/login", login);
 
 export default router;
