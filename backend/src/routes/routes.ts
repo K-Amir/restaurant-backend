@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { expressjwt } from "express-jwt";
+import jwt from "../middlewares/jwtHelper.js";
 import roomRouter from "./room/room.routes.js";
 import userRouter from "./user/user.routes.js";
 import tableRouter from "./table/table.routes.js";
@@ -7,23 +7,11 @@ import restaurantRouter from "./restaurant/restaurant.routes.js";
 import bookingRouter from "./booking/booking.routes.js";
 import opinionsRouter from "./opinion/opinion.routes.js";
 import authRouter from "./auth/auth.routes.js";
-import { config } from "dotenv";
-
-config();
 
 const apiRouter = Router();
 const routes = Router();
 
-routes.use(
-  "/api/v1",
-  expressjwt({
-    secret: process.env.JWT_SECRET,
-    algorithms: ["HS256"],
-  }).unless({
-    path: ["/api/v1/login", "/api/v1/register"],
-  }),
-  apiRouter
-);
+routes.use("/api/v1", jwt, apiRouter);
 
 apiRouter.use(roomRouter);
 apiRouter.use(userRouter);

@@ -23,21 +23,21 @@
     - [x] Tabla Booking
     - [x] Tabla Opinion
 
-- [ ] Crear peticiones para la API
+- [X] Crear peticiones para la API
     - [x] Tabla User
     - [x] Tabla Restaurant
-    - [ ] Tabla Table
-    - [ ] Tabla Room
-    - [ ] Tabla Booking
-    - [ ] Tabla Opinion
+    - [x] Tabla Table
+    - [x] Tabla Room
+    - [x] Tabla Booking
+    - [x] Tabla Opinion
 
-- [ ] Crear middlewares para la gestion de datos
+- [x] Crear middlewares para la gestion de datos
     - [x] Tabla User
     - [x] Tabla Restaurant
-    - [ ] Tabla Table
-    - [ ] Tabla Room
-    - [ ] Tabla Booking
-    - [ ] Tabla Opinion
+    - [x] Tabla Table
+    - [x] Tabla Room
+    - [x] Tabla Booking
+    - [x] Tabla Opinion
 
 - [x] Implementacion validacion de datos
     - [x] Tabla User
@@ -47,15 +47,17 @@
     - [x] Tabla Booking
     - [x] Tabla Opinion
 
-- [ ] Codificar las contraseñas recibidas desde el front
+- [x] Codificar las contraseñas recibidas desde el front
 - [x] Implementar rutas para que sean iguales que las del proyecto de Laravel
-- [ ] Implementar sistema de login
-- [ ] Implementar sistema de recuperacion de password
-- [ ] Implementar sistema de notificaciones push con firebase (Android)
-- [ ] Implementar sistema de notificaciones push con apn (IOs)
+- [x] Implementar sistema de login
+- [ ] Implementar funcion para que las reservas pasen automaticamente de estado al pasar la hora de reserva
+- [ ] Implementar sistema de recuperacion de password //Pendiente
+- [ ] Implementar sistema de notificaciones push con firebase (Android) //En ello
+- [ ] Implementar sistema de notificaciones push con apn (IOs) //En ello
 
 ---
 ### FrontEnd
 - [x] Crear proyecto front en Angular
 - [x] Encontrar e implementar manera de que el front end se actualice automaticamente al añadir datos a la BBDD
 - [x] Mostrar en tablas los datos de las peticiones
+- [ ] Crear tarjetas que representen las mesas y que se vean como cambian de estados al pasar x tiempo
