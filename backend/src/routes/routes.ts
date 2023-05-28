@@ -16,13 +16,13 @@ const routes = Router();
 
 routes.use(
   "/api/v1",
-  apiRouter,
   expressjwt({
-    secret: process.env.JWT_SECRET,
+    secret: "4242343565757576a",
     algorithms: ["HS256"],
   }).unless({
-    path: ["/login", "/register"],
-  })
+    path: ["/api/v1/login", "/api/v1/register"],
+  }),
+  apiRouter
 );
 
 apiRouter.use(roomRouter);
