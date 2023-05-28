@@ -16,9 +16,7 @@ export class Opinion {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, {
-    cascade: ["remove", "update"],
-  })
+  @ManyToOne(() => User)
   @JoinColumn({ name: "user_id" })
   user: Relation<User>;
 
