@@ -51,6 +51,7 @@
 - [x] Implementar rutas para que sean iguales que las del proyecto de Laravel
 - [x] Implementar sistema de login
 - [ ] Implementar funcion para que las reservas pasen automaticamente de estado al pasar la hora de reserva
+- [ ] Implementar funcion para almacenamiento de imagenes
 - [ ] Implementar sistema de recuperacion de password //Pendiente
 - [ ] Implementar sistema de notificaciones push con firebase (Android) //En ello
 - [ ] Implementar sistema de notificaciones push con apn (IOs) //En ello
