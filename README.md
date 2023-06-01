@@ -1,4 +1,4 @@
-# Back End
+# Back End 
 ###  Tras pensarlo detenidamente, se ha decidido (por cuenta propia) que el BackEnd de la aplicación será desarrollada con un stack ***MyEAN***
 - ***My***<!-- Separación -->**SQL** para la base de datos
     
