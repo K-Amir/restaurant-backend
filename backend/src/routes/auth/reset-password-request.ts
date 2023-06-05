@@ -14,7 +14,15 @@ const resetPasswordRequest = async (req: Request, res: Response) => {
 
   const user = await userRepo.findOneBy({
     email: email,
+    isVerified: true,
   });
+
+  if (!user) {
+    res.send({
+      error: "User not found",
+    });
+    return;
+  }
 
   user.token = crypto.randomBytes(48).toString("hex");
 
