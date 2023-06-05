@@ -45,7 +45,7 @@ const resetPasswordRequest = async (req: Request, res: Response) => {
             <div>Hello, ${user.username} click in the following button to reset your password,</div>
            
             <p>
-                <a href="http://localhost:3000/api/v1/reset-password?token=${user.token}">
+                <a href="http://localhost:4200/reset-password?token=${user.token}">
                     <button style="padding: 10px 20px;outline: none;border: none;border-radius: 2px;font-size: 15px;color: white;background: rgb(58, 58, 58);cursor: pointer;">
                     Reset password
                     </button>
@@ -56,7 +56,7 @@ const resetPasswordRequest = async (req: Request, res: Response) => {
             <p>
                 Si el boton no funciona correctamente haga click en el siguiente enlace: 
                 <br />
-                http://localhost:3000/api/v1/reset-password?token=${user.token}
+                http://localhost:4200/reset-password?token=${user.token}
             </p>
             
         </div>
