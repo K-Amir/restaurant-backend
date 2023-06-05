@@ -1,4 +1,4 @@
-import { io } from "../../app.js";
+import { io } from "../../index.js";
 import { Request, Response } from "express";
 import { AppDataSource } from "../../db/data-source.js";
 import { Room } from "../../db/entity/room.js";
